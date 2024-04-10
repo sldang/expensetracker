@@ -4,7 +4,7 @@ class Category {
   String categoryId;
   String name;
   int totalExpenses;
-  String color;
+  int color;
 
   Category({
     required this.categoryId,
@@ -17,7 +17,7 @@ class Category {
       categoryId: '',
       name: '',
       totalExpenses: 0,
-      color: ' '
+      color: 0
   );
 
   CategoryEntity toEntity() {

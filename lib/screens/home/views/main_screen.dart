@@ -1,16 +1,30 @@
 import 'dart:math';
-
+import 'package:expense_repository/expense_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:expensetracker/screens/view_screen.dart';
+import 'package:expensetracker/screens/home/views/view_screen.dart';
+import 'package:intl/intl.dart';
 import '../../../data/data.dart';
 
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  final List<Expense> expenses;
+  const MainScreen(this.expenses, {super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    // Calculate total expenses and total income
+    double totalExpenses = 0;
+    double totalIncome = 0;
+    for (var expense in expenses) {
+      if (!expense.isIncome) {
+        totalExpenses += expense.amount; // Add the expense amount to totalExpenses
+      } else {
+        totalIncome += expense.amount; // Add the income amount to totalIncome
+      }
+    }
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
@@ -94,8 +108,8 @@ class MainScreen extends StatelessWidget {
                        ),
                   ),
                   const SizedBox(height: 12,),
-                  const Text(
-                      "\$ 4800.00",
+                   Text(
+                    "\$${(totalIncome - totalExpenses).toStringAsFixed(2)}",
                     style: TextStyle(
                         fontSize: 40,
                         color: Colors.white,
@@ -126,7 +140,7 @@ class MainScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8,),
-                            const Column(
+                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -138,7 +152,7 @@ class MainScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                    "\$ 2500.00",
+                                  "\$${totalIncome.toStringAsFixed(2)}",
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -167,7 +181,7 @@ class MainScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8,),
-                            const Column(
+                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -179,7 +193,7 @@ class MainScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "\$ 500.00",
+                                  "\$${totalExpenses.toStringAsFixed(2)}",
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -212,7 +226,7 @@ class MainScreen extends StatelessWidget {
                   onTap: (){
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => TransactionListScreen()),
+                      MaterialPageRoute(builder: (context) => TransactionListScreen(expenses)),
                     );
                   },
                   child: const Text(
@@ -229,7 +243,7 @@ class MainScreen extends StatelessWidget {
             const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
-                  itemCount: transactionData.length,
+                  itemCount: expenses.length,
                   itemBuilder: (context, int i) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 14.0),
@@ -252,17 +266,16 @@ class MainScreen extends StatelessWidget {
                                         width: 50,
                                         height: 50,
                                         decoration: BoxDecoration(
-                                          color: transactionData[i]['color'],
+                                          color: Color(expenses[i].category.color),
                                           shape: BoxShape.rectangle,
                                           borderRadius: BorderRadius.circular(10)
                                         ),
                                       ),
-                                      transactionData[i]['icon']
                                     ],
                                   ),
                                   const SizedBox(width: 12),
                                   Text(
-                                      transactionData[i]['name'],
+                                      expenses[i].category.name,
                                       style: const TextStyle(
                                       fontSize: 15,
                                       color: Colors.black,
@@ -275,7 +288,7 @@ class MainScreen extends StatelessWidget {
                                  crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                      transactionData[i]['totalAmount'],
+                                      "\$${expenses[i].amount}",
                                       style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.black,
@@ -283,7 +296,7 @@ class MainScreen extends StatelessWidget {
                                       )
                                   ),
                                    Text(
-                                      transactionData[i]['date'],
+                                      DateFormat('MM/dd/yyy').format(expenses[i].date),
                                       style: const TextStyle(
                                           fontSize: 15,
                                           color: Colors.grey,
