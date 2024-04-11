@@ -34,24 +34,6 @@ class MainScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: Theme.of(context).colorScheme.primary,
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                      ),
-                      const Icon(
-                        CupertinoIcons.person_fill,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     // Use Expanded to allow the Welcome text to take up remaining space
@@ -83,7 +65,7 @@ class MainScreen extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     Theme.of(context).colorScheme.primary,
-                    Theme.of(context).colorScheme.secondary
+                    Theme.of(context).colorScheme.primary
                   ],
                   transform: const GradientRotation(pi /4),
                 ),
@@ -122,87 +104,101 @@ class MainScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 25,
-                              height: 25,
-                              decoration: const BoxDecoration(
-                                color: Colors.white30,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Center(
-                                child: Icon(
-                                  CupertinoIcons.arrow_down,
-                                  size: 12,
-                                  color: Colors.greenAccent,
-                                )
-                              ),
-                            ),
-                            const SizedBox(width: 8,),
-                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    "Income",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400
-                                  ),
+                        Container(
+                         padding: const EdgeInsets.all(8),
+                         decoration: BoxDecoration(
+                          color: Colors.greenAccent.withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(10),
+                         ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 25,
+                                height: 25,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white30,
+                                  shape: BoxShape.circle,
                                 ),
-                                Text(
-                                  "\$${totalIncome.toStringAsFixed(2)}",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              width: 25,
-                              height: 25,
-                              decoration: const BoxDecoration(
-                                color: Colors.white30,
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Center(
+                                child: const Center(
                                   child: Icon(
-                                    CupertinoIcons.arrow_up,
+                                    CupertinoIcons.arrow_down,
                                     size: 12,
-                                    color: Colors.redAccent,
+                                    color: Colors.greenAccent,
                                   )
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 8,),
-                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Expenses",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400
+                              const SizedBox(width: 8,),
+                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      "Income",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "\$${totalExpenses.toStringAsFixed(2)}",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600
+                                  Text(
+                                    "\$${totalIncome.toStringAsFixed(2)}",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600
+                                    ),
                                   ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.redAccent.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 25,
+                                height: 25,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white30,
+                                  shape: BoxShape.circle,
                                 ),
-                              ],
-                            )
-                          ],
+                                child: const Center(
+                                    child: Icon(
+                                      CupertinoIcons.arrow_up,
+                                      size: 12,
+                                      color: Colors.redAccent,
+                                    )
+                                ),
+                              ),
+                              const SizedBox(width: 8,),
+                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Expenses",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400
+                                    ),
+                                  ),
+                                  Text(
+                                    "\$${totalExpenses.toStringAsFixed(2)}",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),

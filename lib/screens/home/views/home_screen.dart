@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           CupertinoIcons.chart_pie,
                           color: index == 1 ? selectedItem : unselectedItem,
                         ),
-                        label: 'Transactions'
+                        label: 'Pie Chart'
                     ),
                   ],
                 ),
