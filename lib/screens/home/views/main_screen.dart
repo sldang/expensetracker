@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         child: Column(
           children: [
             Container(
@@ -50,16 +50,12 @@ class MainScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                          onPressed: () {}, icon: const Icon(CupertinoIcons.settings)))
                 ],
               ),
             ),
             const SizedBox(height: 20),
             Container(
-              width: MediaQuery.of(context).size.width,
+              width: double.infinity,
               height: MediaQuery.of(context).size.width/2,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -104,101 +100,87 @@ class MainScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                         padding: const EdgeInsets.all(8),
-                         decoration: BoxDecoration(
-                          color: Colors.greenAccent.withOpacity(0.4),
-                          borderRadius: BorderRadius.circular(10),
-                         ),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 25,
-                                height: 25,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white30,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    CupertinoIcons.arrow_down,
-                                    size: 12,
-                                    color: Colors.greenAccent,
-                                  )
-                                ),
+                        Row(
+                          children: [
+                            Container(
+                              width: 25,
+                              height: 25,
+                              decoration: const BoxDecoration(
+                                color: Colors.white30,
+                                shape: BoxShape.circle,
                               ),
-                              const SizedBox(width: 8,),
-                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      "Income",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w400
-                                    ),
+                              child: const Center(
+                                child: Icon(
+                                  CupertinoIcons.arrow_down,
+                                  size: 12,
+                                  color: Colors.greenAccent,
+                                )
+                              ),
+                            ),
+                            const SizedBox(width: 8,),
+                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    "Income",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400
                                   ),
-                                  Text(
-                                    "\$${totalIncome.toStringAsFixed(2)}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600
-                                    ),
+                                ),
+                                Text(
+                                  "\$${totalIncome.toStringAsFixed(2)}",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600
                                   ),
-                                ],
-                              )
-                            ],
-                          ),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.redAccent.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 25,
-                                height: 25,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white30,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Center(
-                                    child: Icon(
-                                      CupertinoIcons.arrow_up,
-                                      size: 12,
-                                      color: Colors.redAccent,
-                                    )
-                                ),
+                        Row(
+                          children: [
+                            Container(
+                              width: 25,
+                              height: 25,
+                              decoration: const BoxDecoration(
+                                color: Colors.white30,
+                                shape: BoxShape.circle,
                               ),
-                              const SizedBox(width: 8,),
-                               Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Expenses",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w400
-                                    ),
+                              child: const Center(
+                                  child: Icon(
+                                    CupertinoIcons.arrow_up,
+                                    size: 12,
+                                    color: Colors.redAccent,
+                                  )
+                              ),
+                            ),
+                            const SizedBox(width: 8,),
+                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Expenses",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400
                                   ),
-                                  Text(
-                                    "\$${totalExpenses.toStringAsFixed(2)}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600
-                                    ),
+                                ),
+                                Text(
+                                  "\$${totalExpenses.toStringAsFixed(2)}",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600
                                   ),
-                                ],
-                              )
-                            ],
-                          ),
+                                ),
+                              ],
+                            )
+                          ],
                         )
                       ],
                     ),
@@ -218,22 +200,6 @@ class MainScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold
                     )
                 ),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TransactionListScreen(expenses)),
-                    );
-                  },
-                  child: const Text(
-                      "View All",
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w600
-                      )
-                  ),
-                )
               ],
             ),
             const SizedBox(height: 20),
