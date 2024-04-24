@@ -1,6 +1,6 @@
 # expensetracker
 
-A flutter project to track your expenses.
+A flutter project to track your expenses. you may add transactions to the application and signify whether they are an expense or income. You can also see your account breakdown with the app. The app offers a way to be able to view your purchases and better view your budget. 
 
 ## Getting Started
 
